@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="font/iconfont.css" />
+    <style>
+      /* 初始化样式 */
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      /* CSS样式 */
+      .main {
+        width: 800px;
+        height: 500px;
+        margin: 50px auto;
+      }
+      .main .box {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* 按钮 */
+      .last,
+      .next {
+        position: absolute;
+        /* 定位才有z-index属性 */
+        z-index: 1;
+        top: 50%;
+        width: 50 px;
+        height: 50px;
+        font-size: 50px;
+        color: white;
+        margin-top: -25px;
+        cursor: pointer;
+      }
+      .last {
+        left: 0;
+      }
+      .next {
+        right: 0;
+      }
+
+      .box a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        transition: all 1s;
+      }
+
+      .main .box .before {
+        left: -100% !important;
+      }
+      .main .box .current {
+        left: 0 !important;
+      }
+      .main .box .after {
+        left: 100% !important;
+      }
+      .main .box .aft {
+        transition: all 0s;
+        left: 100% !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <!-- 轮播图 -->
+      <div class="box">
+        <span class="last iconfont icon-chevron-left"></span>
+        <!-- 图片区域 -->
+        <a href="#">
+          <img src="images/01.jpg" alt="" />
+        </a>
+        <a href="#">
+          <img src="images/02.jpg" alt="" />
+        </a>
+        <a href="#">
+          <img src="images/03.jpg" alt="" />
+        </a>
+        <a href="#">
+          <img src="images/04.jpg" alt="" />
+        </a>
+        <a href="#">
+          <img src="images/05.jpg" alt="" />
+        </a>
+        <span class="next iconfont icon-chevron-right"></span>
+      </div>
+    </div>
+  </body>
+  <script>
+    // 轮播图模块
+    ;(function () {
+      // 初始化操作
+      // 1.获取元素
+      let as = document.querySelectorAll(".box a")
+      let next = document.querySelector(".next")
+      let last = document.querySelector(".last")
+      let index = 0
+
+      // 2.第一张以外元素放到after
+      for (let i = 0; i <= as.length - 1; i++) {
+        if (i === 0) {
+          as[0].className = "current"
+          continue
+        }
+        as[i].className = "after"
+      }
+
+      //   next按钮点击事件
+      next.addEventListener("click", function nextBtn() {
+        index++
+        console.log(index)
+        // 到达最后一个，提前移动
+        if (index === 0) {
+          as[as.length - 1].className = "before"
+          as[0].className = "current"
+          return
+        }
+        if (index === 1) {
+          as[0].className = "before"
+          as[1].className = "current"
+          as[as.length - 1].className = "aft"
+          as[as.length - 2].className = "aft"
+          return
+        }
+
+        // 前一个左移
+        as[index - 1].className = "before"
+
+        // 这一个中移
+        as[index].className = "current"
+
+        if (index === as.length - 1) {
+          for (let i = 0; i < as.length - 2; i++) {
+            as[i].className = "aft"
+          }
+          index = -1
+        }
+      })
+    })()
+  </script>
+</html>

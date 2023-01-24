@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "33702762",
+      "name": "chevron-left",
+      "font_class": "chevron-left",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "33702763",
+      "name": "chevron-right",
+      "font_class": "chevron-right",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "33702771",
+      "name": "关闭2",
+      "font_class": "guanbi2",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    }
+  ]
+}
